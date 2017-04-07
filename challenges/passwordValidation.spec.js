@@ -25,25 +25,25 @@ function validate(password) {
 /** TESTS */
 
 describe('validatePassword', () => {
-  it('input  => output fasle', () => {
+  it('input "djI38D55" => output fasle', () => {
     expect(validate('djI38D55')).to.be.true
   })
-  it('input  => output fasle', () => {
+  it('input "d412" => output fasle', () => {
     expect(validate('a2.d412')).to.be.false
   })
-  it('input  => output fasle', () => {
+  it('input "JHD5FJ53" => output fasle', () => {
     expect(validate('JHD5FJ53')).to.be.false
   })
-  it('input  => output fasle', () => {
+  it('input "fdjn345" => output fasle', () => {
     expect(validate('!fdjn345')).to.be.false
   })
-  it('input  => output fasle', () => {
+  it('input "123" => output fasle', () => {
     expect(validate('123')).to.be.false
   })
-  it('input  => output fasle', () => {
+  it('input "abc" => output fasle', () => {
     expect(validate('abc')).to.be.false
   })
-  it('input  => output fasle', () => {
+  it('input "Password123" => output fasle', () => {
     expect(validate('Password123')).to.be.true
   })
 })
