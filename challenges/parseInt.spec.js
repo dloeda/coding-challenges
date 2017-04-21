@@ -31,13 +31,12 @@ const diccMultipliers = {
   'million': 1000000
 }
 
-const parseInt = string => {
-  var array = [0].concat(string.replace(/\ and\ |-/g, ' ').split(' '))
+const parseInt = (string, mult = 1) =>
+  string.split(/\ and\ |-|\ /).concat([0])
     .map(x => isNaN(diccNumbers[x]) ? x : diccNumbers[x])
-  console.log(array)
-  return array
-    .reduce((a, b) => diccMultipliers[b] ? (a * diccMultipliers[b]) : a + b)
-}
+    .map(x => diccMultipliers[x] ? diccMultipliers[x] : x)
+    .reverse()
+    .reduce((a, b) => ((b > 90) ? (b > mult) ? mult = b : mult *= b : a += b * mult) && a)
 
 
 /** TESTS */
@@ -47,7 +46,9 @@ const TestCases = {
   'twenty': 20,
   'two hundred forty-six': 246,
   'five hundred thousand': 500000,
-  'five hundred thousand three hundred': 500300
+  'five hundred thousand three hundred': 500300,
+  'five hundred forty-six thousand three hundred': 546300,
+  'twenty-two million five hundred forty-six thousand three hundred': 22546300
 }
 
 describe('parseInt', () => {
