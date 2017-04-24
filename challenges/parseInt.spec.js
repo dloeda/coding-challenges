@@ -26,9 +26,14 @@ const diccNumbers = {
 }
 
 const diccMultipliers = {
-  'hundred': 100,
-  'thousand': 1000,
-  'million': 1000000
+  'hundred': 1e+2,
+  'thousand': 1e+3,
+  'million': 1e+6,
+  'billion': 1e+9,
+  'trillion': 1e+12,
+  'quadrillion': 1e+15,
+  'quintillion': 1e+18,
+  'sextillion': 1e+21
 }
 
 const parseInt = (string, mult = 1) =>
@@ -38,6 +43,7 @@ const parseInt = (string, mult = 1) =>
     .reverse()
     .reduce((a, b) => ((b > 90) ? (b > mult) ? mult = b : mult *= b : a += b * mult) && a)
 
+// TODO: use 2 multipliers to parse european millions (mult1 {1,100,1000}, mult2: {*illion})
 
 /** TESTS */
 const TestCases = {
@@ -48,7 +54,9 @@ const TestCases = {
   'five hundred thousand': 500000,
   'five hundred thousand three hundred': 500300,
   'five hundred forty-six thousand three hundred': 546300,
-  'twenty-two million five hundred forty-six thousand three hundred': 22546300
+  'twenty-two million five hundred forty-six thousand three hundred': 22546300,
+  'five hundred forty-six billion three hundred million five hundred forty-six thousand three hundred': 546300546300,
+  'two hundred five sextillion': 2.05e+23
 }
 
 describe('parseInt', () => {
